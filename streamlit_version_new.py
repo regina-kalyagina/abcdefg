@@ -66,12 +66,12 @@ def ask_openai(question, df_sample):
     }
 
     try:
-        response = openai.ChatCompletion.create(
+        response = openai.chat_completions.create(   # <-- New method for OpenAI 1.0.0+
             model="gpt-4",
             messages=[system_message, user_message],
             temperature=0.5
         )
-        answer = response['choices'][0]['message']['content']
+        answer = response.choices[0].message.content
         return answer
     except Exception as e:
         st.error(f"An error occurred during OpenAI request: {e}")
