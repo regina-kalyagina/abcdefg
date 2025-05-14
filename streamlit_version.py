@@ -53,10 +53,10 @@ if user_input:
         # OpenAI Chat Completion
         response = openai.ChatCompletion.create(
             model="gpt-4",
-            messages=[
-                {"role": "system", "content": "You are a data analyst. Analyze the dataset and answer questions based on it."},
-                {"role": "user", "content": f"Here is the dataset:\n\n{context}\n\nQuestion: {user_input}"}
-            ]
+            messages=[{"role": "system", "content": "You are a helpful assistant."},
+              {"role": "user", "content": "Your question here"}],
+            temperature=0.5,
+        
         )
 
         # Extract and display the response
