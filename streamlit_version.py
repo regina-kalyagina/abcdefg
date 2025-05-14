@@ -52,9 +52,11 @@ if user_input:
         
         # OpenAI Chat Completion
         response = openai.ChatCompletion.create(
-            model="gpt-4",
-            messages=[{"role": "system", "content": "You are a helpful assistant."},
-              {"role": "user", "content": "Your question here"}],
+            model="gpt-4",  # ✅ Use 'model' instead of 'engine'
+            messages=[
+             {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": "Your question or prompt here"}
+    ],
             temperature=0.5,
         
         )
