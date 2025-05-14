@@ -66,7 +66,7 @@ def ask_openai(question, df_sample):
     }
 
     try:
-        response = openai.chat_completions.create(   # ✅ NEW method call
+        response = openai.ChatCompletion.create(   # ✅ Correct method name
             model="gpt-4",
             messages=[system_message, user_message],
             temperature=0.5
