@@ -7,7 +7,7 @@ import platform
 # 🔍 Detect the OS type
 os_type = platform.system()
 
-#  Securely initialize OpenAI API Key using environment variable
+# ✅ Securely initialize OpenAI API Key using environment variable
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 #  Before running your app, set the API key in your terminal:
@@ -34,7 +34,7 @@ if not openai.api_key:
 # Title of the app
 st.title("Chatbot")
 
-# Load the dataset directly
+# ✅ Load the dataset directly
 dataset_path = "output_Monday_BI_data.csv"  # Provide full path if not in the same folder
 
 try:
@@ -54,9 +54,9 @@ if user_input:
     # Prepare the context for the LLM
     context = df.head().to_string(index=False)  # Only send the first 5 rows to avoid token overload
     
-    # 🔄 **OpenAI Chat Completion with the new SDK syntax**
+    # 🔄 **OpenAI Chat Completion with the NEW SDK method**
     try:
-        response = openai.Chat.create(  # ✅ Correct method for openai>=1.0.0
+        response = openai.chat_completions.create(  # ✅ Correct method for openai>=1.0.0
             model="gpt-4",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant that analyzes datasets."},
@@ -66,7 +66,7 @@ if user_input:
         )
         
         # Extract and display the response
-        bot_response = response.choices[0].message['content']
+        bot_response = response['choices'][0]['message']['content']
         st.write("**Bot:**", bot_response)
     except Exception as e:
         st.error(f"An error occurred during OpenAI request: {e}")
