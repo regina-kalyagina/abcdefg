@@ -1,0 +1,5 @@
+openai
+pandas
+streamlit
+numpy
+openai>=0.27.0
