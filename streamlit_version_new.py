@@ -54,9 +54,9 @@ if user_input:
     # Prepare the context for the LLM
     context = df.head().to_string(index=False)  # Only send the first 5 rows to avoid token overload
     
-    # OpenAI Chat Completion
+    # 🔄 **OpenAI Chat Completion with the new SDK syntax**
     try:
-        response = openai.chat_completions.create(
+        response = openai.Chat.create(  # ✅ Correct method for openai>=1.0.0
             model="gpt-4",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant that analyzes datasets."},
@@ -66,7 +66,7 @@ if user_input:
         )
         
         # Extract and display the response
-        bot_response = response['choices'][0]['message']['content']
+        bot_response = response.choices[0].message['content']
         st.write("**Bot:**", bot_response)
     except Exception as e:
         st.error(f"An error occurred during OpenAI request: {e}")
