@@ -61,4 +61,12 @@ if user_input:
             model="gpt-4",
             prompt=f"Here is the dataset:\n\n{context}\n\nQuestion: {user_input}\nAnswer:",
             temperature=0.5,
-            max
+            max_tokens=200
+        )
+
+        # Extract and display the response
+        bot_response = response['choices'][0]['text']
+        st.write("**Bot:**", bot_response)
+
+    except Exception as e:
+        st.error(f"An error occurred during OpenAI request: {e}")
